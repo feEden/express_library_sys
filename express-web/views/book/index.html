@@ -1,0 +1,35 @@
+{% extends './../layout.html' %} {% block content %}
+<div>
+    <h1>图书列表</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>编码</th>
+                <th>书名</th>
+                <th>价钱</th>
+                <th>作者</th>
+                <th>分类</th>
+                <th>简述</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                {% for key in book %}
+                <td>{{key}}</td>
+                {% endfor %}
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
