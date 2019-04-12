@@ -37,9 +37,12 @@ class BookController extends Controller{
         $book = Book::find()
             -> where(['bid' => $bid])
             -> one();
-        $result = $book -> delete();
-
-        return json_decode(json_encode(array('code' => 1, 'msg' => '删除成功')));
+        try{
+            $book -> delete();
+            return json_encode(array('code' => 1, 'msg' => '删除图书['. $bid .']成功'));
+        } catch(Exception $e){
+            return json_encode(array('code' => -1, 'msg' => '删除图书['. $bid .']失败'));
+        }
     }
 
     // 进入图书管理首页

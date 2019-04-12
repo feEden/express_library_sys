@@ -4,7 +4,8 @@
     "description": "图书管理系统",
     "main": "app.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "dev": "nodemon --inspector",
+        "test": "node ./mochaRunner.js"
     },
     "keywords": [
         "express",
@@ -20,5 +21,11 @@
         "log4js": "^4.1.0",
         "request": "^2.88.0",
         "swig": "^1.4.2"
+    },
+    "devDependencies": {
+        "mocha": "^6.1.3",
+        "mochawesome": "^3.1.1",
+        "should": "^13.2.3",
+        "supertest": "^4.0.2"
     }
 }

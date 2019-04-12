@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const request = require('request');
-const baseURL = 'http://localhost/yii_library_sys/web/index.php?r=book/';
+const baseURL = 'http://localhost/yii-server/web/index.php?r=book/';
 
 //图书管理相关路由
 
@@ -24,7 +24,7 @@ router.get('/getBookList', async(req, res, next) => {
         throw new Error(result.message);
     }
 
-    res.render('book/index', { books: result });
+    res.json(result);
 });
 
 //删除指定的图书
@@ -48,7 +48,8 @@ router.delete('/deleteBookById/:bid', async(req, res, next) => {
         throw new Error(result.message);
     }
 
-    res.redirect('/api/getBookList');
+    console.log(result);
+    res.json(result);
 });
 
 //修改指定的图书信息 新增图书 bid存在，修改，不存在，新增
@@ -75,7 +76,7 @@ router.post('/updateBook', async(req, res, next) => {
         throw new Error(result.message);
     }
 
-    res.redirect('/api/getBookList');
+    res.json(result);
 });
 
 module.exports = router;
