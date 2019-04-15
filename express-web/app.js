@@ -4,22 +4,24 @@ const bodyParser = require('body-parser');
 // 页面模板引擎
 const swig = require('swig');
 
+// 配置信息，解耦
+const { staticDir, viewDir, logFileName, port } = require('./config/app.config');
+
 // 配置日志处理器
 const log4js = require('log4js');
 log4js.configure({
-    appenders: { cheese: { type: 'file', filename: './log/cheese.log' } },
+    appenders: { cheese: { type: 'file', filename: logFileName } },
     //level 记录日志级别 info debug warn error fatal
     categories: { default: { appenders: ['cheese'], level: 'warn' } }
 });
+const logger = log4js.getLogger('log');
 
 const app = express();
 
-const logger = log4js.getLogger('cheese');
-
-//设置swig页面不缓存
+//设置swig页面不缓存 更改为 false 将重新编译每个请求的模板的文件。正式环境建议保持true
 swig.setDefaults({ cache: false });
 app.set('view cache', false);
-app.set('views', 'views');
+app.set('views', viewDir);
 app.set('view engine', 'html');
 app.engine('html', swig.renderFile);
 
@@ -28,37 +30,22 @@ app.use((req, res, next) => {
     next();
 });
 
-// 解析application/json
+// 解析application/json POST请求参数 request playard
 app.use(bodyParser.json());
-// 解析application/x-www-form-urlencoded
+// 解析application/x-www-form-urlencoded POST请求参数 form data
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // 设置托管的静态文件
-app.use(express.static('public'))
+app.use(express.static(staticDir));
 
 // 加载所有的路由
-const book = require('./routers/book');
-const bookApi = require('./routers/bookApi');
-//注册页面跳转路由
-app.use(book);
-//注册所有接口路由 以/api开头
-app.use('/api', bookApi);
+require('./routers/router')(app);
 
-// 处理404
-app.use("*", (req, res, next) => {
-    res.render('error/404', { error: '页面不存在' });
-});
+// 错误处理
+require('./middleware/errorHandler')(app, logger);
 
-// 处理自定义错误
-app.use(function(err, req, res, next) {
-    res.json({
-        code: "5000",
-        msg: err.message
-    });
-});
-
-app.listen(3000, () => {
-    console.log('server is running at 3000 port...');
+app.listen(port, () => {
+    console.log(`server is running at ${port} port...`);
 });
 
 module.exports = app;

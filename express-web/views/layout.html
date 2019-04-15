@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>图书管理系统</title>
-    {% block head %}
-    <!-- css重置 -->
-    <!-- <link rel="stylesheet" href="//g.alicdn.com/thx/cube/1.3.2/cube.min.css"> -->
     <!-- 公共样式 -->
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css"> {% endblock %}
-</head>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> {% block stylesheet %}{% endblock %}
 
-<body>
-    {% block content %}{% endblock %}
-</body>
-<script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/common.js"></script>
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+
+    <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src=" /js/book.js "></script>
+    {% block scripts %}{% endblock %}
 
 </html>

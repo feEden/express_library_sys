@@ -1115,16 +1115,8 @@ class Generator
 
                 if (!$parameter->isVariadic()) {
                     if ($parameter->isDefaultValueAvailable()) {
-                        $value = $parameter->getDefaultValueConstantName();
-
-                        if ($value === null) {
-                            $value = \var_export($parameter->getDefaultValue(), true);
-                        } elseif (!\defined($value)) {
-                            $rootValue = \preg_replace('/^.*\\\\/', '', $value);
-                            $value = \defined($rootValue) ? $rootValue : $value;
-                        }
-
-                        $default = ' = ' . $value;
+                        $value   = $parameter->getDefaultValue();
+                        $default = ' = ' . \var_export($value, true);
                     } elseif ($parameter->isOptional()) {
                         $default = ' = null';
                     }

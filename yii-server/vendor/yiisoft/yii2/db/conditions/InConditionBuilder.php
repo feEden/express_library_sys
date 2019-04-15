@@ -50,22 +50,12 @@ class InConditionBuilder implements ExpressionBuilderInterface
             // ensure values is an array
             $values = (array) $values;
         }
-
-        if (is_array($column)) {
-            if (count($column) > 1) {
-                return $this->buildCompositeInCondition($operator, $column, $values, $params);
-            } else {
-                $column = reset($column);
-            }
+        if ($column instanceof \Traversable || ((is_array($column) || $column instanceof \Countable) && count($column) > 1)) {
+            return $this->buildCompositeInCondition($operator, $column, $values, $params);
         }
 
-        if ($column instanceof \Traversable) {
-            if (iterator_count($column) > 1) {
-                return $this->buildCompositeInCondition($operator, $column, $values, $params);
-            } else {
-                $column->rewind();
-                $column = $column->current();
-            }
+        if (is_array($column)) {
+            $column = reset($column);
         }
 
         $sqlValues = $this->buildValues($expression, $values, $params);
@@ -97,15 +87,6 @@ class InConditionBuilder implements ExpressionBuilderInterface
     {
         $sqlValues = [];
         $column = $condition->getColumn();
-
-        if (is_array($column)) {
-            $column = reset($column);
-        }
-
-        if ($column instanceof \Traversable) {
-            $column->rewind();
-            $column = $column->current();
-        }
 
         foreach ($values as $i => $value) {
             if (is_array($value) || $value instanceof \ArrayAccess) {

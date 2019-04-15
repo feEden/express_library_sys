@@ -256,7 +256,7 @@ abstract class Schema extends BaseObject
      * Determines the PDO type for the given PHP data value.
      * @param mixed $data the data whose PDO type is to be determined
      * @return int the PDO type
-     * @see https://secure.php.net/manual/en/pdo.constants.php
+     * @see http://www.php.net/manual/en/pdo.constants.php
      */
     public function getPdoType($data)
     {
@@ -361,7 +361,7 @@ abstract class Schema extends BaseObject
      * @param string $sequenceName name of the sequence object (required by some DBMS)
      * @return string the row ID of the last row inserted, or the last value retrieved from the sequence object
      * @throws InvalidCallException if the DB connection is not active
-     * @see https://secure.php.net/manual/en/function.PDO-lastInsertId.php
+     * @see http://www.php.net/manual/en/function.PDO-lastInsertId.php
      */
     public function getLastInsertID($sequenceName = '')
     {
@@ -452,7 +452,7 @@ abstract class Schema extends BaseObject
      * Note that if the parameter is not a string, it will be returned without change.
      * @param string $str string to be quoted
      * @return string the properly quoted string
-     * @see https://secure.php.net/manual/en/function.PDO-quote.php
+     * @see http://www.php.net/manual/en/function.PDO-quote.php
      */
     public function quoteValue($str)
     {
@@ -732,15 +732,15 @@ abstract class Schema extends BaseObject
         $cache = null;
         if ($this->db->enableSchemaCache && !in_array($name, $this->db->schemaCacheExclude, true)) {
             $schemaCache = is_string($this->db->schemaCache) ? Yii::$app->get($this->db->schemaCache, false) : $this->db->schemaCache;
-            if ($schemaCache instanceof CacheInterface) {
+            if ($schemaCache instanceof Cache) {
                 $cache = $schemaCache;
             }
         }
         $rawName = $this->getRawTableName($name);
-        if (!isset($this->_tableMetadata[$rawName])) {
+        if ($refresh || !isset($this->_tableMetadata[$rawName])) {
             $this->loadTableMetadataFromCache($cache, $rawName);
         }
-        if ($refresh || !array_key_exists($type, $this->_tableMetadata[$rawName])) {
+        if (!array_key_exists($type, $this->_tableMetadata[$rawName])) {
             $this->_tableMetadata[$rawName][$type] = $this->{'loadTable' . ucfirst($type)}($rawName);
             $this->saveTableMetadataToCache($cache, $rawName);
         }

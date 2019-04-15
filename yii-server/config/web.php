@@ -5,7 +5,6 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
-    'name' => '图书管理系统',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -16,17 +15,6 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'huangss',
-        ],
-        // 返回json格式的数据
-        'response' => [
-            // ...
-            'formatters' => [
-                \yii\web\Response::FORMAT_JSON => [
-                     'class' => 'yii\web\JsonResponseFormatter',
-                     'prettyPrint' => YII_DEBUG, // use "pretty" output in debug mode
-                     // ...
-                ],
-            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

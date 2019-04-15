@@ -4,19 +4,14 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitceead6880235b55fe551c1f295ee195b
+class ComposerStaticInitca92174f94924455cc80624f2ab12859
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
-        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
-        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
     );
 
@@ -45,22 +40,19 @@ class ComposerStaticInitceead6880235b55fe551c1f295ee195b
         ),
         'S' => 
         array (
-            'Symfony\\Polyfill\\Php72\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
-            'Symfony\\Polyfill\\Iconv\\' => 23,
-            'Symfony\\Polyfill\\Ctype\\' => 23,
-            'Symfony\\Contracts\\' => 18,
             'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\DomCrawler\\' => 29,
+            'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\BrowserKit\\' => 29,
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
         ),
         'G' => 
@@ -71,10 +63,6 @@ class ComposerStaticInitceead6880235b55fe551c1f295ee195b
         array (
             'Faker\\' => 6,
         ),
-        'E' => 
-        array (
-            'Egulias\\EmailValidator\\' => 23,
-        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
@@ -82,6 +70,7 @@ class ComposerStaticInitceead6880235b55fe551c1f295ee195b
         ),
         'C' => 
         array (
+            'Codeception\\PHPUnit\\' => 20,
             'Codeception\\Extension\\' => 22,
             'Codeception\\' => 12,
         ),
@@ -90,11 +79,11 @@ class ComposerStaticInitceead6880235b55fe551c1f295ee195b
     public static $prefixDirsPsr4 = array (
         'yii\\swiftmailer\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer/src',
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
         ),
         'yii\\gii\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yiisoft/yii2-gii/src',
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-gii',
         ),
         'yii\\faker\\' => 
         array (
@@ -102,7 +91,7 @@ class ComposerStaticInitceead6880235b55fe551c1f295ee195b
         ),
         'yii\\debug\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yiisoft/yii2-debug/src',
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-debug',
         ),
         'yii\\composer\\' => 
         array (
@@ -130,29 +119,9 @@ class ComposerStaticInitceead6880235b55fe551c1f295ee195b
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
-        'Symfony\\Polyfill\\Php72\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
-        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
-        ),
-        'Symfony\\Polyfill\\Intl\\Idn\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-idn',
-        ),
-        'Symfony\\Polyfill\\Iconv\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-iconv',
-        ),
-        'Symfony\\Polyfill\\Ctype\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
-        ),
-        'Symfony\\Contracts\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/contracts',
         ),
         'Symfony\\Component\\Yaml\\' => 
         array (
@@ -170,6 +139,10 @@ class ComposerStaticInitceead6880235b55fe551c1f295ee195b
         array (
             0 => __DIR__ . '/..' . '/symfony/dom-crawler',
         ),
+        'Symfony\\Component\\Debug\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/debug',
+        ),
         'Symfony\\Component\\CssSelector\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/css-selector',
@@ -181,6 +154,10 @@ class ComposerStaticInitceead6880235b55fe551c1f295ee195b
         'Symfony\\Component\\BrowserKit\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/browser-kit',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -194,10 +171,6 @@ class ComposerStaticInitceead6880235b55fe551c1f295ee195b
         array (
             0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
         ),
-        'Egulias\\EmailValidator\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
-        ),
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
@@ -205,6 +178,10 @@ class ComposerStaticInitceead6880235b55fe551c1f295ee195b
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'Codeception\\PHPUnit\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codeception/phpunit-wrapper/src',
         ),
         'Codeception\\Extension\\' => 
         array (
@@ -234,10 +211,6 @@ class ComposerStaticInitceead6880235b55fe551c1f295ee195b
         ),
         'D' => 
         array (
-            'Doctrine\\Common\\Lexer\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/lexer/lib',
-            ),
             'Diff' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/php-diff/lib',
@@ -807,10 +780,10 @@ class ComposerStaticInitceead6880235b55fe551c1f295ee195b
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitceead6880235b55fe551c1f295ee195b::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitceead6880235b55fe551c1f295ee195b::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitceead6880235b55fe551c1f295ee195b::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitceead6880235b55fe551c1f295ee195b::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitca92174f94924455cc80624f2ab12859::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitca92174f94924455cc80624f2ab12859::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitca92174f94924455cc80624f2ab12859::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitca92174f94924455cc80624f2ab12859::$classMap;
 
         }, null, ClassLoader::class);
     }

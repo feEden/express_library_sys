@@ -124,9 +124,8 @@ class NumberValidator extends Validator
     private function isNotNumber($value)
     {
         return is_array($value)
-            || is_bool($value)
-            || (is_object($value) && !method_exists($value, '__toString'))
-            || (!is_object($value) && !is_scalar($value) && $value !== null);
+        || (is_object($value) && !method_exists($value, '__toString'))
+        || (!is_object($value) && !is_scalar($value) && $value !== null);
     }
 
     /**

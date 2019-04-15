@@ -170,25 +170,13 @@ class ActiveQuery extends Query implements ActiveQueryInterface
             } elseif (is_array($this->via)) {
                 // via relation
                 /* @var $viaQuery ActiveQuery */
-                list($viaName, $viaQuery, $viaCallableUsed) = $this->via;
+                list($viaName, $viaQuery) = $this->via;
                 if ($viaQuery->multiple) {
-                    if ($viaCallableUsed) {
-                        $viaModels = $viaQuery->all();
-                    } elseif ($this->primaryModel->isRelationPopulated($viaName)) {
-                        $viaModels = $this->primaryModel->$viaName;
-                    } else {
-                        $viaModels = $viaQuery->all();
-                        $this->primaryModel->populateRelation($viaName, $viaModels);
-                    }
+                    $viaModels = $viaQuery->all();
+                    $this->primaryModel->populateRelation($viaName, $viaModels);
                 } else {
-                    if ($viaCallableUsed) {
-                        $model = $viaQuery->one();
-                    } elseif ($this->primaryModel->isRelationPopulated($viaName)) {
-                        $model = $this->primaryModel->$viaName;
-                    } else {
-                        $model = $viaQuery->one();
-                        $this->primaryModel->populateRelation($viaName, $model);
-                    }
+                    $model = $viaQuery->one();
+                    $this->primaryModel->populateRelation($viaName, $model);
                     $viaModels = $model === null ? [] : [$model];
                 }
                 $this->filterByModels($viaModels);
@@ -579,15 +567,14 @@ class ActiveQuery extends Query implements ActiveQueryInterface
     /**
      * Returns the table name and the table alias for [[modelClass]].
      * @return array the table name and the table alias.
-     * @since 2.0.16
+     * @internal
      */
-    protected function getTableNameAndAlias()
+    private function getTableNameAndAlias()
     {
         if (empty($this->from)) {
             $tableName = $this->getPrimaryTableName();
         } else {
             $tableName = '';
-            // if the first entry in "from" is an alias-tablename-pair return it directly
             foreach ($this->from as $alias => $tableName) {
                 if (is_string($alias)) {
                     return [$tableName, $alias];
@@ -771,12 +758,12 @@ class ActiveQuery extends Query implements ActiveQueryInterface
      * @param callable $callable a PHP callback for customizing the relation associated with the junction table.
      * Its signature should be `function($query)`, where `$query` is the query to be customized.
      * @return $this the query object itself
-     * @throws InvalidConfigException when query is not initialized properly
      * @see via()
      */
     public function viaTable($tableName, $link, callable $callable = null)
     {
-        $modelClass = $this->primaryModel ? get_class($this->primaryModel) : $this->modelClass;
+        $modelClass = $this->primaryModel !== null ? get_class($this->primaryModel) : __CLASS__;
+
         $relation = new self($modelClass, [
             'from' => [$tableName],
             'link' => $link,

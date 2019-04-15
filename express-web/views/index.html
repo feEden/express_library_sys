@@ -1,0 +1,35 @@
+{% extends './layout.html' %} {% block stylesheet %}
+<link rel="stylesheet" href="/css/book.css"> {% endblock %} {% block content %}
+<div>
+    <h1>图书列表</h1>
+    <a href="/saveBook"><button type="button" class="btn btn-warning btn-md btn-add">新增</button></a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>编码</th>
+                <th>书名</th>
+                <th>价钱</th>
+                <th>作者</th>
+                <th>分类</th>
+                <th>简述</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in data %}
+            <tr>
+                <td>{{book.bid}}</td>
+                <td>{{book.bname}}</td>
+                <td>{{book.bprice}}</td>
+                <td>{{book.bauth}}</td>
+                <td>{{book.btype}}</td>
+                <td>{{book.bdesc}}</td>
+                <td>
+                    <a href="/saveBook?bid={{book.bid}}"><button type="button" class="btn btn-primary btn-sm">编辑</button></a>
+                    <button type="button" class="btn btn-danger btn-sm btn-delete" id="{{book.bid}}">删除</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

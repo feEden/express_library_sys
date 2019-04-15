@@ -19,8 +19,8 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->registerCsrfMetaTags() ?>
-    <title>图书管理系统</title>
+    <?= Html::csrfMetaTags() ?>
+    <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -38,10 +38,10 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            /* ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']], */
-            /* Yii::$app->user->isGuest ? (
+            ['label' => 'Contact', 'url' => ['/site/contact']],
+            Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
@@ -52,7 +52,7 @@ AppAsset::register($this);
                 )
                 . Html::endForm()
                 . '</li>'
-            ) */
+            )
         ],
     ]);
     NavBar::end();

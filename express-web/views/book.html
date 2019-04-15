@@ -1,0 +1,39 @@
+{% extends './layout.html' %} {% block content %}
+<div>
+    {% if data === '' %}
+    <h1>添加图书</h1>
+    {% else %}
+    <button type="button" class="btn btn-danger btn-sm btn-delete" id="{{book.bid}}">删除</button>
+    <h1>修改图书</h1>
+    {% endif %}
+    <form>
+        {% if data !== '' %}
+        <div class="form-group">
+            <label for="bid">编码</label>
+            <input type="text" class="form-control" id="bid" name="bid" placeholder="编码" value="{{data.bid}}" readonly>
+        </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="bname">书名</label>
+            <input type="text" class="form-control" id="bname" name="bname" placeholder="书名" value="{{data.bname}}">
+        </div>
+        <div class="form-group">
+            <label for="bprice">价格</label>
+            <input type="text" class="form-control" id="bprice" name="bprice" placeholder="价格" value="{{data.bprice}}">
+        </div>
+        <div class="form-group">
+            <label for="bauth">作者</label>
+            <input type="text" class="form-control" id="bauth" name="bauth" placeholder="作者" value="{{data.bauth}}">
+        </div>
+        <div class="form-group">
+            <label for="btype">分类</label>
+            <input type="text" class="form-control" id="btype" name="btype" placeholder="分类" value="{{data.btype}}">
+        </div>
+        <div class="form-group">
+            <label for="bdesc">简介</label>
+            <textarea class="form-control" name="bdesc" id="bdesc">{{data.bdesc}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-success btn-save">保存</button>
+    </form>
+</div>
+{% endblock %}

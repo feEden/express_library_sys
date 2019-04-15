@@ -98,7 +98,7 @@ return [
     '{nFormatted} B' => '',
     '{nFormatted} GB' => '',
     '{nFormatted} GiB' => '',
-    '{nFormatted} kB' => '',
+    '{nFormatted} KB' => '',
     '{nFormatted} KiB' => '',
     '{nFormatted} MB' => '',
     '{nFormatted} MiB' => '',

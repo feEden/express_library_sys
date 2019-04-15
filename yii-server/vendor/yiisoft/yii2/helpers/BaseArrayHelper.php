@@ -131,7 +131,7 @@ class BaseArrayHelper
                         $res[$k] = $v;
                     }
                 } elseif (is_array($v) && isset($res[$k]) && is_array($res[$k])) {
-                    $res[$k] = static::merge($res[$k], $v);
+                    $res[$k] = self::merge($res[$k], $v);
                 } else {
                     $res[$k] = $v;
                 }
@@ -143,8 +143,7 @@ class BaseArrayHelper
 
     /**
      * Retrieves the value of an array element or object property with the given key or property name.
-     * If the key does not exist in the array, the default value will be returned instead.
-     * Not used when getting value from an object.
+     * If the key does not exist in the array or object, the default value will be returned instead.
      *
      * The key may be specified in a dot format to retrieve the value of a sub-array or the property
      * of an embedded object. In particular, if the key is `x.y.z`, then the returned value would
@@ -510,7 +509,7 @@ class BaseArrayHelper
      * ```
      *
      * @param array $array
-     * @param int|string|\Closure $name
+     * @param string|\Closure $name
      * @param bool $keepKeys whether to maintain the array keys. If false, the resulting array
      * will be re-indexed with integers.
      * @return array the list of column values
@@ -601,7 +600,7 @@ class BaseArrayHelper
     {
         if ($caseSensitive) {
             // Function `isset` checks key faster but skips `null`, `array_key_exists` handles this case
-            // https://secure.php.net/manual/en/function.array-key-exists.php#107786
+            // http://php.net/manual/en/function.array-key-exists.php#107786
             return isset($array[$key]) || array_key_exists($key, $array);
         }
 
@@ -625,7 +624,7 @@ class BaseArrayHelper
      * When sorting by multiple keys with different sorting directions, use an array of sorting directions.
      * @param int|array $sortFlag the PHP sort flag. Valid values include
      * `SORT_REGULAR`, `SORT_NUMERIC`, `SORT_STRING`, `SORT_LOCALE_STRING`, `SORT_NATURAL` and `SORT_FLAG_CASE`.
-     * Please refer to [PHP manual](https://secure.php.net/manual/en/function.sort.php)
+     * Please refer to [PHP manual](http://php.net/manual/en/function.sort.php)
      * for more details. When sorting by multiple keys with different sort flags, use an array of sort flags.
      * @throws InvalidArgumentException if the $direction or $sortFlag parameters do not have
      * correct number of elements as that of $key.
@@ -676,7 +675,7 @@ class BaseArrayHelper
      * @param string $charset the charset that the data is using. If not set,
      * [[\yii\base\Application::charset]] will be used.
      * @return array the encoded data
-     * @see https://secure.php.net/manual/en/function.htmlspecialchars.php
+     * @see http://www.php.net/manual/en/function.htmlspecialchars.php
      */
     public static function htmlEncode($data, $valuesOnly = true, $charset = null)
     {
@@ -709,7 +708,7 @@ class BaseArrayHelper
      * @param bool $valuesOnly whether to decode array values only. If false,
      * both the array keys and array values will be decoded.
      * @return array the decoded data
-     * @see https://secure.php.net/manual/en/function.htmlspecialchars-decode.php
+     * @see http://www.php.net/manual/en/function.htmlspecialchars-decode.php
      */
     public static function htmlDecode($data, $valuesOnly = true)
     {
@@ -807,14 +806,14 @@ class BaseArrayHelper
     /**
      * Check whether an array or [[\Traversable]] contains an element.
      *
-     * This method does the same as the PHP function [in_array()](https://secure.php.net/manual/en/function.in-array.php)
+     * This method does the same as the PHP function [in_array()](http://php.net/manual/en/function.in-array.php)
      * but additionally works for objects that implement the [[\Traversable]] interface.
      * @param mixed $needle The value to look for.
      * @param array|\Traversable $haystack The set of values to search.
      * @param bool $strict Whether to enable strict (`===`) comparison.
      * @return bool `true` if `$needle` was found in `$haystack`, `false` otherwise.
      * @throws InvalidArgumentException if `$haystack` is neither traversable nor an array.
-     * @see https://secure.php.net/manual/en/function.in-array.php
+     * @see http://php.net/manual/en/function.in-array.php
      * @since 2.0.7
      */
     public static function isIn($needle, $haystack, $strict = false)
@@ -837,11 +836,11 @@ class BaseArrayHelper
     /**
      * Checks whether a variable is an array or [[\Traversable]].
      *
-     * This method does the same as the PHP function [is_array()](https://secure.php.net/manual/en/function.is-array.php)
+     * This method does the same as the PHP function [is_array()](http://php.net/manual/en/function.is-array.php)
      * but additionally works on objects that implement the [[\Traversable]] interface.
      * @param mixed $var The variable being evaluated.
      * @return bool whether $var is array-like
-     * @see https://secure.php.net/manual/en/function.is-array.php
+     * @see http://php.net/manual/en/function.is-array.php
      * @since 2.0.8
      */
     public static function isTraversable($var)
