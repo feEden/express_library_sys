@@ -1,5 +1,8 @@
-// 做节流操作 点击新增按钮 要等到新增成功，在响应下一个请求
-const throttle = (fn, delay) => {
+function Util(){}
+Util.version = '1.0.0';
+
+// 做节流操作，等到一次响应结束在发送下一次的请求
+Util.throttle =  (fn, delay) => {
     var timer;
     return (...arg) => {
         if (!timer) {
@@ -9,5 +12,3 @@ const throttle = (fn, delay) => {
         }
     }
 }
-
-export default throttle;

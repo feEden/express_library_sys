@@ -38,9 +38,10 @@ class Books extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => '编码',
+            'bid' => '编码',
             'bname' => '书名',
             'bauth' => '作者',
+            'bprice' => '价格',
             'btype' => '分类',
             'bdesc' => '描述'
         ];

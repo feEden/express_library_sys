@@ -1,116 +1,73 @@
-const request = require('request');
-const { baseURL } = require('../config/app.config');
+/**
+ * @fileoverview  实现book模块service层
+ * @author huangss
+ */
+const SafeRequest = require('../utils/SafeRequest');
 
-// 图书管理service层
+/**
+ *  BookService类, 对外提供增删改查的数据接口
+ * @class
+ */
 class BookService {
+    /**
+     * @constructor
+     * @param
+     */
     constructor() {}
 
     /**
      * 获取图书列表
+     * @param {Object} options  请求配置参数
+     * @example
+     * getBookList({uri: baseURL + 'books/index',method: 'get',json: true})
+     * return new Promise
      */
-    async getBookList() {
-        const result = await new Promise((resolve, reject) => {
-            request({
-                uri: baseURL + 'books/index',
-                method: 'get',
-                json: true
-            }, (error, res, body) => {
-                if (error) {
-                    reject({ code: -1, message: error.message });
-                }
-
-                resolve(body);
-            });
-        });
-
-        return result;
+    getBookList(options) {
+        return SafeRequest.request(options);
     };
 
     /**
      * 删除指定的图书
-     * @param {String} bid 图书编码
+     * @param {Object} options  请求配置参数
+     * @example
+     * deleteBookByBid({uri: baseURL + 'books/delete&bid=' + bid,method: 'post',json: true})
+     * return new Promise
      */
-    async deleteBookByBid(bid) {
-        const result = await new Promise((resolve, reject) => {
-            request({
-                uri: baseURL + 'books/delete&bid=' + bid,
-                method: 'post',
-                json: true
-            }, (err, res, body) => {
-                if (err) {
-                    reject({ code: -1, message: err.message });
-                }
-                resolve(body);
-            });
-        });
-
-        return result;
+    deleteBookByBid(options) {
+        return SafeRequest.request(options);
     };
 
     /**
      * 获取指定图书信息
-     * @param {String} bid 图书编码 
+     * @param {Object} options  请求配置参数
+     * @example
+     * getBookInfoByBid({uri: baseURL + 'books/view&bid=' + bid,method: 'get',json: true})
+     * return new Promise
      */
-    async getBookInfoByBid(bid) {
-        const result = await new Promise((resolve, reject) => {
-            request({
-                uri: baseURL + 'books/view&bid=' + bid,
-                method: 'get',
-                json: true
-            }, (error, res, body) => {
-                if (error) {
-                    reject({ code: -1, message: error.message });
-                }
-                resolve(body);
-            });
-        });
-
-        return result;
+    getBookInfoByBid(options) {
+        return SafeRequest.request(options);
     };
 
     /**
      * 更新图书
-     * @param {Object} formData 表单提交数据
-     * @param {String} bid 修改图书信息传入的图书编码
+     * @param {Object} options  请求配置参数
+     * @example
+     * updateBook({uri: baseURL + 'books/update&bid=' + bid,method: 'post',json: true})
+     * return new Promise
      */
-    async updateBook(formData, bid) {
-        const result = await new Promise((resolve, reject) => {
-            request({
-                uri: baseURL + 'books/update&bid=' + bid,
-                method: 'post',
-                form: formData,
-                json: true
-            }, (error, res, body) => {
-                if (error) {
-                    reject({ code: -1, message: error.message });
-                }
-                resolve(body);
-            });
-        });
-
-        return result;
+    updateBook(options) {
+        return SafeRequest.request(options);
     }
 
     /**
      * 新增图书
-     * @param {Object} formData 表单提交数据
+     * @param {Object} options 请求配置参数
+     * @example
+     * addBook({uri: baseURL + 'books/create',method: 'post',json: true})
+     * return new Promise
      */
-    async addBook(formData, bid) {
-        const result = await new Promise((resolve, reject) => {
-            request({
-                uri: baseURL + 'books/create',
-                method: 'post',
-                form: formData,
-                json: true
-            }, (error, res, body) => {
-                if (error) {
-                    reject({ code: -1, message: error.message });
-                }
-                resolve(body);
-            });
-        });
-
-        return result;
+    addBook(options) {
+        return SafeRequest.request(options);
     }
 
 }

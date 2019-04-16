@@ -72,7 +72,8 @@ class BooksController extends Controller
 
         $result = array("code"=>-1,"message"=>"新增图书失败");
         $model = new Books();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+        if ($model->load(Yii::$app->request->post(), '') && $model->save()) {
             $result["code"] = 1;
             $result["message"] = "新增图书成功";
         }

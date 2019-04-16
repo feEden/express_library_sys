@@ -1,4 +1,5 @@
-{% extends './layout.html' %} {% block content %}
+{% extends './layout.html' %}
+{% block content %}
 <div>
     {% if data === '' %}
     <h1>添加图书</h1>
@@ -33,7 +34,25 @@
             <label for="bdesc">简介</label>
             <textarea class="form-control" name="bdesc" id="bdesc">{{data.bdesc}}</textarea>
         </div>
-        <button type="submit" class="btn btn-success btn-save">保存</button>
     </form>
+    <button class="btn btn-success btn-save">保存</button>
 </div>
+{% endblock %}
+{% block scripts %}
+    <!-- 浏览器支持module. 加载这个，不支持，加载下面的 -->
+    <script type="module">
+        console.log('我支持ES6模块');
+        import('/js/save.js').then(_ =>{
+            const save =new  _.default();
+            save.saveBook();
+        });
+    </script>
+    <script type="nomodule" src="https://cdn.staticfile.org/systemjs/3.1.2/system.js"></script>
+    <script type="nomodule">
+        console.log('我不支持ES6模块');
+        System.import("/js/save-bundle.js").then((_) => {
+            const save = new _.default;
+            save.saveBook();
+        });
+    </script>
 {% endblock %}

@@ -5,7 +5,10 @@
     "main": "app.js",
     "scripts": {
         "dev": "cross-env NODE_ENV=development nodemon --inspect",
-        "test": "cross-env NODE_ENV=testing node ./mochaRunner.js"
+        "test": "cross-env NODE_ENV=testing node ./mochaRunner.js",
+        "babel": "babel ./assets/js/save.js --out-file  ./assets/js/save-bundle.js",
+        "doc": "jsdoc ./**/*.js -d ./docs/apidoc",
+        "rize": "node ./tests/book.ui.spec.js"
     },
     "keywords": [
         "express",
@@ -20,13 +23,21 @@
         "express": "^4.16.4",
         "log4js": "^4.1.0",
         "request": "^2.88.0",
-        "swig": "^1.4.2"
+        "swig": "^1.4.2",
+        "uuid": "^3.3.2"
     },
     "devDependencies": {
+        "@babel/cli": "^7.4.3",
+        "@babel/core": "^7.4.3",
+        "@babel/plugin-transform-modules-systemjs": "^7.4.0",
+        "@babel/preset-env": "^7.4.3",
         "cross-env": "^5.2.0",
+        "jsdoc": "^3.5.5",
         "lodash": "^4.17.11",
         "mocha": "^6.1.3",
         "mochawesome": "^3.1.1",
+        "puppeteer": "^1.14.0",
+        "rize": "^0.8.0",
         "should": "^13.2.3",
         "supertest": "^4.0.2"
     }
