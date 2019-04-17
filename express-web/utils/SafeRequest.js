@@ -37,11 +37,17 @@ class SafeRequest{
                     reject(result);
                 }
 
-                result.code = 1;
-                result.message = 'ok';
-                result.data = body;
+                // 访问出错了，返回服务器提示的错误
+                if(body.code === 0 && body.status === 404){
+                    result.data = {code: -1, message: body.message + ',删除的图书编码不存在'};
+                    resolve(result);
+                }else{
+                    result.code = 1;
+                    result.message = 'ok';
+                    result.data = body;
 
-                resolve(result);
+                    resolve(result);
+                }
             });
         });
     }

@@ -7,6 +7,7 @@ const book = new BookController();
 module.exports = (app) => {
     // 注册首页路由
     router.get('/', book.actionIndex());
+    router.get('/index', book.actionIndex());
     router.get('/saveBook', book.actionSaveBook());
 
     // 注册删除图书API
