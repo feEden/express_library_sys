@@ -33,7 +33,7 @@ class BookController {
             }
             const result = await bookService.getBookList(options);
 
-            res.render('index', { data: result.data });
+            res.render('index', { data: result });
         }
     };
 
@@ -53,7 +53,7 @@ class BookController {
                 json: true
             };
             const result = await bookService.deleteBookByBid(options);
-            res.json(result.data);
+            res.json(result);
         }
     };
 
@@ -76,7 +76,7 @@ class BookController {
             if (bid) {
                 result = await bookService.getBookInfoByBid(configs);
             }
-            res.render('book', { data:result.data });
+            res.render('book', { data:result });
         }
     };
     /**
@@ -96,7 +96,7 @@ class BookController {
                 json: true
             }
             const result = await bookService.updateBook(options);
-            res.json(result.data);
+            res.json(result);
         }
     }
 
@@ -118,7 +118,7 @@ class BookController {
                 json: true
             }
             const result = await bookService.addBook(options);
-            res.json(result.data);
+            res.json(result);
         }
     };
 };

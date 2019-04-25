@@ -15,10 +15,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 if (process.env.NODE_ENV === 'development') {
-    config = _.extend(config, { port: 3000, baseURL: 'http://localhost/yii-server/web/index.php?r=' })
+    config = _.extend(config, { port: 3000, baseURL: 'http://localhost:8081/yii-server/web/index.php?r=' })
 }
 
 if (process.env.NODE_ENV === 'testing') {
-    config = _.extend(config, { port: 9000, baseURL: 'http://localhost/yii-server/web/index.php?r=' })
+    config = _.extend(config, { port: 9000, baseURL: 'http://localhost:8081/yii-server/web/index.php?r=' })
 }
 module.exports = config;

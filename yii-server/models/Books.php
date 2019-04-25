@@ -18,7 +18,7 @@ class Books extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 't_books';
+        return 'tl_books';
     }
 
     /**
@@ -27,8 +27,9 @@ class Books extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['bid', 'bname', 'bprice', 'bauth', 'btype', 'bdesc'], 'required'],
-            ['bprice', 'number']
+            [['name', 'author'], 'required'],
+            [['name'], 'string', 'max' => 100],
+            [['author'], 'string', 'max' => 500],
         ];
     }
 
@@ -38,12 +39,9 @@ class Books extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'bid' => '编码',
-            'bname' => '书名',
-            'bauth' => '作者',
-            'bprice' => '价格',
-            'btype' => '分类',
-            'bdesc' => '描述'
+            'id' => 'ID',
+            'name' => 'Name',
+            'author' => 'Author',
         ];
     }
 }
