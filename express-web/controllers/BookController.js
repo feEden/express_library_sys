@@ -76,7 +76,7 @@ class BookController {
             if (bid) {
                 result = await bookService.getBookInfoByBid(configs);
             }
-            res.render('book', { data:result });
+            res.render('book', { data:result.data });
         }
     };
     /**
