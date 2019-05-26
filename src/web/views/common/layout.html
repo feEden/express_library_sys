@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}
+                {% endblock%}
+            </title>
+            <!-- 公共样式 -->
+            <!-- <link rel="stylesheet" href="/css/common.css"> -->
+            <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+            <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet"> {% block stylesheet %}{% endblock %}
+
+            <body>
+                {% include "../../components/banner/banner.html" %}
+                <div id="pjax-container">
+                    {% block content %}{% endblock %}
+                </div>
+            </body>
+
+            <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
+            <script crossorigin="anonymous" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+            <script src="https://cdn.staticfile.org/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+            <!-- x-tag组件 -->
+            <script src="https://cdn.staticfile.org/x-tag/2.0.9-alpha/x-tag-raw.min.js"></script>
+            <!-- js脚本离线缓存 -->
+            <script src="https://cdn.staticfile.org/basket.js/0.5.2/basket.full.min.js"></script>
+            <script>
+                function Util() {}Util.version = '1.0.0';
+
+                // 做节流操作，等到一次响应结束在发送下一次的请求
+                Util.throttle = (fn, delay) => {
+                    var timer;
+                    return(...arg) => {
+                        if (! timer) { // 在delay时间后，timer重置
+                            timer = setTimeout(() => timer = null, delay);
+                            fn.apply(this, arg);
+                        }
+                    }
+                }
+            </script>
+            <script>
+                // 指定#pjax-container下的所有a标签都实现pjax加载，在请求头中会包含'X-PJAX'头，用来判断这个请求是通过pjax发送的
+                $(document).pjax('a', '#pjax-container')
+            </script>
+            {% block scripts %}{% endblock %}
+        </head>
+    </html>
